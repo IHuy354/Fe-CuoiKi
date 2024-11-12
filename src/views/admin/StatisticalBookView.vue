@@ -5,13 +5,13 @@
       <!-- trái -->
       <div class="thong-ke__pr">
         <!-- 1 -->
-        <div class="thong-ke__list bg__section">
-          <div class="thong-ke__soluong">
-            <h2 class="thong-ke__dem">25,119{{}}</h2>
-            <img src="" alt="" />
+          <div class="thong-ke__list bg__section">
+            <div class="thong-ke__soluong">
+              <h2 class="thong-ke__dem">2519{{}}</h2>
+              <img src="" alt="" />
+            </div>
+            <p class="thong-ke__content">Số người thăm thư viện</p>
           </div>
-          <p class="thong-ke__content">Số người thăm thư viện</p>
-        </div>
         <!-- 2 -->
         <div class="thong-ke__list bg__section">
           <div class="thong-ke__soluong">
@@ -23,7 +23,7 @@
         <!-- 3 -->
         <div class="thong-ke__list bg__section">
           <div class="thong-ke__soluong">
-            <h2 class="thong-ke__dem">25,119{{}}</h2>
+            <h2 class="thong-ke__dem">324{{}}</h2>
             <img src="" alt="" />
           </div>
           <p class="thong-ke__content">Sách quá hạn</p>
@@ -40,54 +40,20 @@
         <div class="sachyeuthich-pd">
           <div class="sachyeuthichtheo">
             <h3>TOP SÁCH YÊU THÍCH</h3>
-            <select class="sachyeuthich-sl" v-model="selectedPeriod" @change="updateFavoriteBooks">
-              <option value="year">Theo năm</option>
-              <option value="quarter">Theo quý</option>
-              <option value="month">Theo tháng</option>
-            </select>
           </div>
-          <ul>
-            <li v-for="book in favoriteBooks" :key="book.id">{{ book.title }}</li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue'
-
-// Dữ liệu mẫu cho các sách yêu thích theo các thời gian khác nhau
-const booksData = {
-  year: [
-    { id: 1, title: 'Sách yêu thích năm 2024 - Sách A' },
-    { id: 2, title: 'Sách yêu thích năm 2024 - Sách B' },
-  ],
-  quarter: [
-    { id: 1, title: 'Sách yêu thích quý 1 - Sách C' },
-    { id: 2, title: 'Sách yêu thích quý 1 - Sách D' },
-  ],
-  month: [
-    { id: 1, title: 'Sách yêu thích tháng 10 - Sách E' },
-    { id: 2, title: 'Sách yêu thích tháng 10 - Sách F' },
-  ],
-}
-
-// Biến lưu trữ thời gian đã chọn và danh sách sách yêu thích
-const selectedPeriod = ref('year')
-const favoriteBooks = ref(booksData[selectedPeriod.value])
-
-// Hàm cập nhật danh sách sách yêu thích dựa trên thời gian đã chọn
-function updateFavoriteBooks() {
-  favoriteBooks.value = booksData[selectedPeriod.value]
-}
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 /* thuộc tính chung */
 .bg__section {
   background-color: #f5f5f5;
 }
+
 /* -----------------thống kê trái-------------------- */
 .thong-ke__pr {
   width: 17%;
@@ -98,6 +64,12 @@ function updateFavoriteBooks() {
 .thong-ke__list {
   padding: 12%;
   border-radius: 15px;
+  transition: 0.3s;
+  user-select: none;
+  cursor: pointer;
+}
+.thong-ke__list:hover {
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.15);
 }
 .thong-ke__content {
   font-family: Inter;
@@ -141,7 +113,7 @@ h2 {
   text-align: center;
   padding: 5px 9px;
   background-color: #1868c1;
-  color: white; 
+  color: white;
   border-radius: 5px;
   transition: 0.3s;
 }
