@@ -146,5 +146,6 @@ h2 {
 }
 .sachyeuthich-r {
   max-width: 39%;
+
 }
 </style>
