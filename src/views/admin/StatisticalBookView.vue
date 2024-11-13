@@ -5,13 +5,13 @@
       <!-- trái -->
       <div class="thong-ke__pr">
         <!-- 1 -->
-          <div class="thong-ke__list bg__section">
-            <div class="thong-ke__soluong">
-              <h2 class="thong-ke__dem">2519{{}}</h2>
-              <img src="" alt="" />
-            </div>
-            <p class="thong-ke__content">Số người thăm thư viện</p>
+        <div class="thong-ke__list bg__section">
+          <div class="thong-ke__soluong">
+            <h2 class="thong-ke__dem">2519{{}}</h2>
+            <img src="" alt="" />
           </div>
+          <p class="thong-ke__content">Số người thăm thư viện</p>
+        </div>
         <!-- 2 -->
         <div class="thong-ke__list bg__section">
           <div class="thong-ke__soluong">
@@ -40,13 +40,34 @@
         <div class="sachyeuthich-pd">
           <div class="sachyeuthichtheo">
             <h3>TOP SÁCH YÊU THÍCH</h3>
+            <v-select
+              class="sl1"
+              v-model="select"
+              :hint="`${select.state}, ${select.abbr}`"
+              :items="items"
+              item-title="state"
+              item-value="abbr"
+              label="Select"
+              persistent-hint
+              return-object
+              single-line
+            ></v-select>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const select = ref({ state: 'Theo tháng', abbr: 'FL' })
+const items = ref([
+  { state: 'Theo tháng', abbr: '' },
+  { state: 'Theo quý', abbr: '' },
+  { state: 'Theo năm', abbr: '' },
+])
+</script>
 
 <style scoped>
 /* thuộc tính chung */
@@ -55,6 +76,7 @@
 }
 
 /* -----------------thống kê trái-------------------- */
+
 .thong-ke__pr {
   width: 17%;
   display: flex;
@@ -108,6 +130,8 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  column-gap: 20px;
 }
 .sachyeuthich-sl {
   text-align: center;
@@ -120,6 +144,14 @@ h2 {
 .sachyeuthich-sl:hover {
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
+.sl1 {
+  font-size: 10px;
+  max-width: 130px;
+  font-size: 12px;
+}
+.sl1 .v-select__selections,
+.sl1 .v-input__control .v-input__slot,
+.sl1 .v-list-item__title {
+  font-size: 12px; /* Áp dụng kích thước chữ cho các mục và văn bản bên trong `v-select` */
+}
 </style>
-<!-- Báo cáo và thống kê: Cung cấp các báo cáo về số lượng sách, lượt mượn, tỷ lệ trả sách đúng hạn, và
-các thống kê khác. -->
