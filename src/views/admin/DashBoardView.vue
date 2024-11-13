@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-card class="full-width">
       <!-- Toolbar hiển thị thông tin người dùng -->
-      <v-toolbar color="primary"  elevation="0" >
+      <v-toolbar color="primary" elevation="0">
         <div v-if="userInfo" class="d-flex align-center justify-space-between" style="width: 100%">
           <div class="d-flex align-center" style="margin-left: 5px">
             <span>{{ userInfo.name }}</span>
@@ -36,16 +36,21 @@
 
     <div class="d-flex full-height">
       <!-- Tabs bên trái -->
-      <v-tabs v-model="tab" color="primary" direction="vertical" class="tabs-full-height tabs-narrow" >
+      <v-tabs
+        v-model="tab"
+        color="primary"
+        direction="vertical"
+        class="tabs-full-height tabs-narrow"
+      >
         <v-tab value="option-1" class="title-func">Quản lý sách</v-tab>
         <v-tab value="option-2" class="title-func">Quản lý mượn trả sách</v-tab>
         <v-tab value="option-3" class="title-func">Thống kê sách yêu thích</v-tab>
       </v-tabs>
 
       <!-- Nội dung các tab bên phải -->
-      <v-tabs-window v-model="tab" class="tabs-window-full-width mt-1 "   >
+      <v-tabs-window v-model="tab" class="tabs-window-full-width mt-1">
         <v-tabs-window-item value="option-1">
-          <v-card flat  >
+          <v-card flat>
             <v-card-text rounded="sm">
               <ManagerBookView />
             </v-card-text>
@@ -69,6 +74,14 @@
         </v-tabs-window-item>
       </v-tabs-window>
     </div>
+    <!-- thanh menu -->
+    <svg class="menu-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License -
+      https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+      <path
+        d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+      />
+    </svg>
 
     <!-- Kết quả tìm kiếm -->
     <div class="search-results" v-if="isSearchVisible">
@@ -95,13 +108,13 @@
     </div>
 
     <v-snackbar
-    v-model="showNotification"
-    :color="notificationColor"
-    timeout="3000"
-    class="custom-snackbar"
-  >
-    {{ notificationMessage }}
-  </v-snackbar>
+      v-model="showNotification"
+      :color="notificationColor"
+      timeout="3000"
+      class="custom-snackbar"
+    >
+      {{ notificationMessage }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -144,7 +157,7 @@ const toggleSearch = () => {
   // Đổi trạng thái hiển thị thanh tìm kiếm
   isSearchVisible.value = !isSearchVisible.value
   // Xóa từ khóa tìm kiếm khi ấn nút xóa
-  searchQuery.value = '';
+  searchQuery.value = ''
 }
 
 // =============================
@@ -152,14 +165,13 @@ const toggleSearch = () => {
 const onLogoutClick = () => {
   localStorage.removeItem('user')
   notificationMessage.value = 'Đã đăng xuất'
-    notificationColor.value = 'green'
-    showNotification.value = true;
+  notificationColor.value = 'green'
+  showNotification.value = true
   setTimeout(() => {
-        router.push('/login')
-      }, 1000)
+    router.push('/login')
+  }, 1000)
   // Redirect to login page
 }
-
 
 // Quản lý thông báo
 const showNotification = ref(false)
@@ -218,18 +230,13 @@ onMounted(() => {
   position: relative;
 }
 
-.title-func{
-  font-weight: 600;         /* Chữ đậm */
-  letter-spacing: -0.5px;    /* Chữ sát gần lại */
-  padding: 4px 8px;          /* Điều chỉnh padding nếu cần */
-  margin: 0;                 /* Bỏ khoảng cách giữa các tab */
-  line-height: 1.2;          /* Chiều cao dòng thấp hơn */
+.title-func {
+  font-weight: 600; /* Chữ đậm */
+  letter-spacing: -0.5px; /* Chữ sát gần lại */
+  padding: 4px 8px; /* Điều chỉnh padding nếu cần */
+  margin: 0; /* Bỏ khoảng cách giữa các tab */
+  line-height: 1.2; /* Chiều cao dòng thấp hơn */
 }
-
-
-
-
-
 
 .custom-snackbar {
   position: fixed !important;
@@ -239,4 +246,31 @@ onMounted(() => {
   left: auto !important;
 }
 
+/* ----------------responsive------------------- */
+/* PC */
+@media (min-width: 992px) {
+}
+/* Tablet and Mobile */
+@media (max-width: 991.98px) {
+  .tabs-full-height {
+    display: none;
+  }
+  .v-card-text{
+    margin-top: 20px;
+  }
+}
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+/* mobile */
+@media (max-width: 767.98px) {
+}
+/* set kích thước menu */
+.menu-header{
+  width: 20px;
+  position: absolute;
+  top: 90px;
+  left: 18px;
+  /* 15.31 101.1 */
+}
 </style>

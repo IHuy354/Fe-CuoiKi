@@ -32,7 +32,7 @@
       <!-- giữa... Khách vip -->
       <div class="KhachVip">
         <div class="khachvip-pd">
-          <h3 class="khachvip-year">TOP THƯỢNG ĐẾ NĂM : 2024</h3>
+          <h3 class="khachvip-year">TOP THƯỢNG ĐẾ</h3>
         </div>
       </div>
       <!-- phải....Top sách yêu thích -->
@@ -40,18 +40,19 @@
         <div class="sachyeuthich-pd">
           <div class="sachyeuthichtheo">
             <h3>TOP SÁCH YÊU THÍCH</h3>
-            <v-select
-              class="sl1"
-              v-model="select"
-              :hint="`${select.state}, ${select.abbr}`"
-              :items="items"
-              item-title="state"
-              item-value="abbr"
-              label="Select"
-              persistent-hint
-              return-object
-              single-line
-            ></v-select>
+            <div class="sachyeuthich-r">
+              <v-select
+                v-model="select"
+                :hint="`${select.state}, ${select.abbr}`"
+                :items="items"
+                item-title="state"
+                item-value="abbr"
+                label="Select"
+                persistent-hint
+                return-object
+                single-line
+              ></v-select>
+            </div>
           </div>
         </div>
       </div>
@@ -128,9 +129,8 @@ h2 {
 }
 .sachyeuthichtheo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   column-gap: 20px;
 }
 .sachyeuthich-sl {
@@ -144,14 +144,7 @@ h2 {
 .sachyeuthich-sl:hover {
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
-.sl1 {
-  font-size: 10px;
-  max-width: 130px;
-  font-size: 12px;
-}
-.sl1 .v-select__selections,
-.sl1 .v-input__control .v-input__slot,
-.sl1 .v-list-item__title {
-  font-size: 12px; /* Áp dụng kích thước chữ cho các mục và văn bản bên trong `v-select` */
+.sachyeuthich-r {
+  max-width: 39%;
 }
 </style>
